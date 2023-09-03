@@ -2,6 +2,7 @@
   --font-default: "DM Sans", Arial, Helvetica, sans-serif;
   --font-slab: var(--font-default);
   --modal-duration: 0.8s;
+  --primary-color: #FF001B;
 }
 * {
   box-sizing: border-box;
@@ -11,13 +12,16 @@
 /* Landing Page */
 
 body {
-  margin: 0;
+  /* margin: 0; */
+  /* max-width: 1300px; */
+  max-width: 1440px;
+  margin: auto;
   display: flex;
   flex-direction: column;
   background-image: url("background.png");
   font-family: var(--font-default);
   font-size: 18px;
-  max-width: 1300px;
+  
   margin: 0 auto;
 }
 
@@ -32,7 +36,13 @@ img {
 
 .topnav {
   overflow: hidden;
-  margin: 3.5%;
+  /* margin: 3.5%; */
+  margin: 3.5% 3.5% 5.5% 3.5%;
+  /* TODO: responsive desktop */
+
+  /* max-width: 1240px;
+  margin-left: auto;
+  margin-right: auto; */
 }
 .header-logo {
     float: left;
@@ -62,44 +72,16 @@ img {
   background-color: #ff0000;
   color: #ffffff;
   border-radius: 15px;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+
 }
 
 .topnav .icon {
   display: none;
 }
 
-@media screen and (max-width: 768px) {
-  .topnav a {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
-}
 
-@media screen and (max-width: 768px) {
-  .topnav.responsive {position: relative;}
-  .topnav.responsive .icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-}
-
-
-
- @media screen and (max-width: 540px) {
-  .topnav a {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-    margin-top: -15px;
-  }
-} 
 
 main {
   font-size: 130%;
@@ -108,10 +90,13 @@ main {
   padding-top: 0.5vw;
   padding-left: 2vw;
   padding-right: 2vw;
-  margin: 1px 20px 15px;
+  /* margin: 1px 20px 15px; */
   border-radius: 2rem;
   text-align: justify;
 
+  /* TODO: responsive for desktop */
+  max-width: 1240px;
+  margin: auto;
 
 }
 
@@ -405,7 +390,8 @@ input[data-error]::after {
   font-size: 16px;
 }
 .hero-section {
-  min-height: 93vh;
+  /* min-height: 93vh; */
+  /* height: 657px; */
   border-radius: 10px;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -420,6 +406,7 @@ input[data-error]::after {
   color: #fff;
   position: relative;
   text-align: left;
+  /* FIXME: problème avec responsive < 425px */
   min-width: 424px;
 }
 .hero-content::after {
@@ -460,6 +447,7 @@ input[data-error]::after {
 .hero-img img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
   display: block;
   padding: 0;
 }
@@ -478,10 +466,37 @@ footer {
   padding-right: 2vw;
   margin: 0 20px;
 }
+
+/* ****************Responsive design****************** */
+
+/* For large desktop > 1440px */
+@media screen and (max-width: 1440px) and (min-width: 1439px) {
+  .header-logo {
+    /* TODO: comment reculer le logo à gauche dynamiquement, ne pas utiliser margin-left avec une valeur fixe */
+    margin-left: 80px;
+  }
+  }
+
+@media screen and (max-width: 1440px) {
+  .hero-section {
+    /* TODO: à voir responsive  */
+    /* min-height: 93vh; */
+    height: 657px;
+  }
+}
+  
+/* For tablet> 800px */
+
 @media screen and (max-width: 800px) {
+  .fa.fa-bars.fa-nav {
+    color: var(--primary-color);
+    /* FIXME: comment faire pour modifier font-size de cet <i> */
+    font-size: 24px;
+  }
   .hero-section {
     display: block;
     box-shadow: unset;
+    height: auto;
   }
   .hero-content {
     background: #fff;
@@ -516,6 +531,86 @@ footer {
     text-align: center;
   }
 }
+
+/* For tablet> 768px */
+@media screen and (max-width: 768px) {
+
+  /* hide navbar in block */
+  .topnav a {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+
+  /* display navbar responsive */
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+  
+/* @media screen and (max-width: 768px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+} */
+  
+  
+/* For mobile > 540px */
+@media screen and (max-width: 540px) {
+
+  /* header */
+  .header-logo img{
+    width: 50%;
+  }
+
+  .fa-bars{
+    color: var(--primary-color);
+  }
+
+  .topnav {
+    margin: 7.5% 0 7.5% 5.5%;
+  }
+
+  .topnav a {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+    margin-top: -15px;
+  }
+
+  /* Main */
+  .hero-headline {
+    font-size: 40px;
+  }
+
+  .hero-text {
+    /* width: 146%;
+    font-weight: normal; */
+    margin-top: 17px;
+    font-size: 14px;
+    padding-right: 14px;
+  }
+  .hero-img {
+    padding: 0 20px
+  }
+} 
+
 
 @keyframes modalopen {
   from {

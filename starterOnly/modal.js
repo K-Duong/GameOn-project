@@ -12,6 +12,11 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const btnClose = document.querySelector('.close');
+const inputFirstN = document.querySelector('#first');
+const inputEmail = document.querySelector('#email');
+const inputBirthday = document.querySelector('#birthday');
+const inputQuantity = document.querySelector('#quantity');
+const inputsLocation = document.querySelectorAll('.checkbox-input');
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -26,10 +31,15 @@ function closeModal() {
   modalbg.style.display = "none";
 }
 
-//add event close modal to btn Close 
-btnClose.addEventListener('click', closeModal);
+///////Close modal
 
-//close modal with escape on keyboard
-window.addEventListener('keydown', (e) => {
-  if(e.key === 'Escape') closeModal();
-})
+  //add event close modal to btn Close 
+  btnClose.addEventListener('click', closeModal);
+
+  //close modal with escape on keyboard
+  window.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape') closeModal();
+  })
+
+////////Check valid value in form
+

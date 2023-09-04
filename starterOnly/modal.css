@@ -9,6 +9,7 @@
   margin: 0;
   padding: 0;
 }
+
 /* Landing Page */
 
 body {
@@ -38,11 +39,7 @@ img {
   overflow: hidden;
   /* margin: 3.5%; */
   margin: 3.5% 3.5% 5.5% 3.5%;
-  /* TODO: responsive desktop */
-
-  /* max-width: 1240px;
-  margin-left: auto;
-  margin-right: auto; */
+ 
 }
 .header-logo {
     float: left;
@@ -94,8 +91,7 @@ main {
   border-radius: 2rem;
   text-align: justify;
 
-  /* TODO: responsive for desktop */
-  max-width: 1240px;
+  /* max-width: 1240px; */
   margin: auto;
 
 }
@@ -144,14 +140,15 @@ main {
 
 .bground {
   display: none;
-  position: fixed;
+  /* position: fixed; */
   z-index: 1;
   left: 0;
   top: 0;
   height: 100%;
   width: 100%;
   overflow: auto;
-  background-color: rgba(26, 39, 156, 0.4);
+  /* background-color: rgba(26, 39, 156, 0.4); */
+  background-color: white;
 }
 
 .content {
@@ -407,7 +404,7 @@ input[data-error]::after {
   position: relative;
   text-align: left;
   /* FIXME: problème avec responsive < 425px */
-  min-width: 424px;
+  /* min-width: 424px; */
 }
 .hero-content::after {
   content: "";
@@ -472,16 +469,27 @@ footer {
 /* For large desktop > 1440px */
 @media screen and (max-width: 1440px) and (min-width: 1439px) {
   .header-logo {
+   /* FIXME: version 320px, logo est décalé, ne se situe pas sur la meme ligne avec nav */
     /* TODO: comment reculer le logo à gauche dynamiquement, ne pas utiliser margin-left avec une valeur fixe */
     margin-left: 80px;
   }
   }
 
 @media screen and (max-width: 1440px) {
+
+  main {
+    max-width: 1240px;
+  }
   .hero-section {
-    /* TODO: à voir responsive  */
-    /* min-height: 93vh; */
     height: 657px;
+  }
+
+  .bground {
+    display: flex;
+    align-items: center;
+    position: absolute;
+   
+
   }
 }
   
@@ -490,7 +498,6 @@ footer {
 @media screen and (max-width: 800px) {
   .fa.fa-bars.fa-nav {
     color: var(--primary-color);
-    /* FIXME: comment faire pour modifier font-size de cet <i> */
     font-size: 24px;
   }
   .hero-section {
@@ -595,6 +602,12 @@ footer {
   }
 
   /* Main */
+  main {
+    max-width: 500px;
+    overflow: hidden;
+    
+  }
+ 
   .hero-headline {
     font-size: 40px;
   }
@@ -609,8 +622,24 @@ footer {
   .hero-img {
     padding: 0 20px
   }
+
+  /* overlay */
+  .bground {
+    display: block;
+    position: absolute;
+    top: 88px
+  }
 } 
 
+
+/* For sx mobile */
+@media screen and (max-width: 375px) {
+  
+  .hero-headline {
+    font-size: 31px;
+  }
+
+}
 
 @keyframes modalopen {
   from {

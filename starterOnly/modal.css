@@ -112,6 +112,33 @@ main {
   background: #3876ac;
 }
 
+/* styling the modal thank with height = form's height */
+.modal-thank {
+  /* display: none; */
+  max-height: 750px;
+  height: 750px;
+/*   
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+
+.modal-thank > .text {
+  display: flex;
+  font-size: 36px;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  top: 40%;
+ 
+}
+
+.modal-thank > .btn-close-thank {
+  bottom: -550px;
+  position: relative;
+}
+
 .footer {
   margin: 20px;
   padding: 10px;
@@ -141,6 +168,7 @@ main {
 .bground {
   display: none;
   /* position: fixed; */
+  position: absolute;
   z-index: 1;
   left: 0;
   top: 0;
@@ -166,6 +194,9 @@ main {
 }
 
 .modal-body {
+  /* display:none;  */
+  /* fix height */
+  /* height: 76vh; */
   padding: 15px 8%;
   margin: 15px auto;
 }
@@ -310,7 +341,8 @@ input[data-error]::after {
   transform: rotate(-45deg);
 }
 .btn-submit,
-.btn-signup {
+.btn-signup, 
+.btn-close-thank {
   background: #fe142f;
   display: block;
   margin: 0 auto;
@@ -486,6 +518,7 @@ footer {
   main {
     max-width: 1240px;
   }
+
   .hero-section {
     height: 657px;
   }
@@ -493,10 +526,11 @@ footer {
   .bground {
     display: flex;
     align-items: center;
-    position: absolute;
-   
-
   }
+
+  /* .modal-thank {
+    height: 750px;
+  } */
 }
   
 /* For tablet> 800px */

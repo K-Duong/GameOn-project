@@ -57,14 +57,19 @@
           <span class="close"></span>
           <div class="modal-body">
             <!-- TODO: à voir que faire onsubmit? -->
-            <form
+            <!-- <form
               name="reserve"
               action="index.html"
               method="get"
               onsubmit="return validate();"
+            > -->
+            <form
+              name="reserve"
+              action="index.html"
+              method="get"
             >
               <div
-                class="formData" data-error="Veuillez entrer 2 caractères ou plus pour le champ du nom." data-error-visible="true">
+                class="formData form-first-name" data-error="Veuillez entrer 2 caractères ou plus pour le champ du nom.">
                 <label>Prénom</label><br>
                 <input
                   class="text-control"
@@ -75,7 +80,7 @@
                 /><br>
               </div>
               <div
-                class="formData" >
+                class="formData form-last-name" data-error="Veuillez entrer 2 caractères ou plus pour le champ du nom." >
                 <label>Nom</label><br>
                 <input
                   class="text-control"
@@ -85,7 +90,7 @@
                 /><br>
               </div>
               <div
-                class="formData" data-error="Email doit être sous forme abc@xyz.com">
+                class="formData form-email" data-error="Email doit être sous forme abc@xyz.com">
                 <label>E-mail</label><br>
                 <input
                   class="text-control"
@@ -95,7 +100,7 @@
                 /><br>
               </div>
               <div
-                class="formData" data-error="Vous devez entrer votre date de naissance.">
+                class="formData form-birthday" data-error="Vous devez entrer votre date de naissance.">
                 <label>Date de naissance</label><br>
                 <input
                   class="text-control"
@@ -105,15 +110,15 @@
                 /><br>
               </div>
               <div
-                class="formData">
+                class="formData form-quantity" data-error="Vous devez entrer un numéro entre 0 à 99">
                 <label>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
-                <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
+                <input type="number" pattern="[0-9]" class="text-control" id="quantity" name="quantity" min="0" max="99"  >
               </div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
               <div
-                class="formData" data-error="Vous devez choisir une option.">
+                class="formData locations" data-error="Vous devez choisir une option.">
                 <input
-                  class="checkbox-input"
+                  class="checkbox-input checkbox-input-radio"
                   type="radio"
                   id="location1"
                   name="location"
@@ -124,7 +129,7 @@
                   New York</label
                 >
                 <input
-                  class="checkbox-input"
+                  class="checkbox-input checkbox-input-radio"
                   type="radio"
                   id="location2"
                   name="location"
@@ -135,7 +140,7 @@
                   San Francisco</label
                 >
                 <input
-                  class="checkbox-input"
+                  class="checkbox-input checkbox-input-radio"
                   type="radio"
                   id="location3"
                   name="location"
@@ -146,7 +151,7 @@
                   Seattle</label
                 >
                 <input
-                  class="checkbox-input"
+                  class="checkbox-input checkbox-input-radio"
                   type="radio"
                   id="location4"
                   name="location"
@@ -157,7 +162,7 @@
                   Chicago</label
                 >
                 <input
-                  class="checkbox-input"
+                  class="checkbox-input checkbox-input-radio"
                   type="radio"
                   id="location5"
                   name="location"
@@ -168,7 +173,7 @@
                   Boston</label
                 >
                 <input
-                  class="checkbox-input"
+                  class="checkbox-input checkbox-input-radio"
                   type="radio"
                   id="location6"
                   name="location"
@@ -183,17 +188,17 @@
               <div
                 class="formData" data-error="Vous devez vérifier que vous acceptez les termes et conditions.">
                 <input
-                  class="checkbox-input"
+                  class="checkbox-input checkboxes "
                   type="checkbox"
                   id="checkbox1"
-                  checked
+                  
                 />
                 <label class="checkbox2-label" for="checkbox1" required>
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
                 <br>
-                <input class="checkbox-input" type="checkbox" id="checkbox2" />
+                <input class="checkbox-input checkboxes" type="checkbox" id="checkbox2"/>
                 <label class="checkbox2-label" for="checkbox2">
                   <span class="checkbox-icon"></span>
                   Je souhaite être prévenu des prochains évènements.
@@ -207,6 +212,13 @@
                 value="C'est parti"
               />
             </form>
+          </div>
+          <div class="modal-thank">
+            <div class="text">
+              <p>Merci pour </p>
+              <p>votre inscription</p>
+            </div>
+          <button class="btn-close-thank">Fermer</button>
           </div>
         </div>
       </div>

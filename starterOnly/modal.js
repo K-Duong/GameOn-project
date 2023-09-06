@@ -61,6 +61,7 @@ const datas = [
     domElement : document.querySelector('#birthday'),
     validCondition()  {
       const birthMs = new Date(this.domElement.value)
+      // TODO: vérifier avant 
       const diffMs = Date.now() - birthMs;
       const age = new Date(diffMs).getFullYear() - 1970;
       console.log(age);
@@ -71,7 +72,7 @@ const datas = [
   quantity = {
     domElement : document.querySelector('#quantity'),
     validCondition() {
-      return  Number(this.domElement.value) !== NaN && Number(this.domElement.value) && this.domElement.value >= 0 && this.domElement.value < 99 ? true : false
+      return  Number(this.domElement.value) !== NaN && Number(this.domElement.value) && this.domElement.value >= 0 && this.domElement.value <= 99 ? true : false
 
     }
   },
@@ -188,38 +189,6 @@ datas.forEach(data => {
   })
 })
 
-// inputFirstN.addEventListener('input', (e) => {
-//   const condition = inputFirstN.value.length > 2;
-
-//   checkValidInput(e, condition);
-//   getValue(inputFirstN,firstName);
-//   // console.log(datas[0].validCondition());
-// })
-
-// inputEmail.addEventListener('input', (e) => {
-//   const condition = inputEmail.value.includes('@');
-//   checkValidInput(e, condition);
-//   getValue(inputEmail,email);
-// })
-
-// inputBirthday.addEventListener('input', (e) => {
-//   const condition = inputBirthday.value;
-//   checkValidInput(e, condition);
-//   getValue(inputBirthday,birthday);
-// })
-
-// inputQuantity.addEventListener('input', (e) => {
-//   // const condition = inputQuantity.value >= 0 && inputQuantity.value < 99 ;
-//   // checkValidInput(e, condition);
-//   // getValue(inputQuantity,quantity);
-//   // console.log(typeof(inputQuantity.value));
-// })
-
-// inputsLocation.forEach((input) => {
-//   input.addEventListener('input', () => {
-//   })
-// })
-
 ////////Check valid value for submitted form 
 function validate(e) {
   e.preventDefault();
@@ -228,10 +197,8 @@ function validate(e) {
   if(invalidForm) {
     datas.forEach(data => {
     if(!data.value || !data.validCondition()) { 
-      // console.log(data, !data.validCondition());
       displayErrorMessage(data.domElement)
     } else {
-      // console.log(data, !data.validCondition());
       closeErrorMessage(data.domElement);
     }
     })

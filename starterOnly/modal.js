@@ -60,7 +60,11 @@ const datas = [
   birthday = {
     domElement : document.querySelector('#birthday'),
     validCondition()  {
-      return this.domElement.value
+      const birthMs = new Date(this.domElement.value)
+      const diffMs = Date.now() - birthMs;
+      const age = new Date(diffMs).getFullYear() - 1970;
+      console.log(age);
+      return age >= 12 ? true : false
     }
   },
   
@@ -169,9 +173,11 @@ const closeErrorMessage = (inputEl) => {
 }
 /// add event for each type of input
 
-function blabla() {
-  console.log(arguments)
-}
+const validInput = function (e) {
+  const target = e.target.closest('.formData');
+  console.log(e);
+
+} 
 
 datas.forEach(data => {
   data.domElement.addEventListener('input', (e) => {
@@ -209,26 +215,14 @@ datas.forEach(data => {
 //   // console.log(typeof(inputQuantity.value));
 // })
 
-inputsLocation.forEach((input) => {
-  input.addEventListener('input', () => {
-    console.log(input.name);
-  })
-})
+// inputsLocation.forEach((input) => {
+//   input.addEventListener('input', () => {
+//   })
+// })
 
 ////////Check valid value for submitted form 
-
-form.addEventListener('submit', (e) => {
+function validate(e) {
   e.preventDefault();
-  // const html = `
-  // <div class="modal-thank">
-  //   <div class="text">
-  //     <p>Merci pour </p>
-  //     <p>votre inscription</p>
-  //   </div>
-  //   <button class="btn-close-thank">Fermer</button>
-  // </div>`;
-
-  
   const invalidForm =  datas.some(data => !data.value || !data.validCondition())
 
   if(invalidForm) {
@@ -246,10 +240,5 @@ form.addEventListener('submit', (e) => {
     modalBody.style.display = 'none';
     modalThank.style.display = 'block';
   }
-})
-
-
-
-
-
+}
 

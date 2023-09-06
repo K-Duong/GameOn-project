@@ -17,9 +17,10 @@
       <img alt="logo" src="Logo.png" width="auto" height="auto" />
     </div>
     <div class="main-navbar">
-      
-      <!-- <a href="#" class="active"><span>Accueil</span></a> -->
-      <a href="#" class="active"><span>Détails de l'évènement</span></a>
+      <!-- TODO: pourquoi besoin class active ? -->
+      <a href="#" class="active"><span>Accueil</span></a>
+      <!-- <a href="#" class="active"><span>Détails de l'évènement</span></a> -->
+      <a href="#"><span>Détails de l'évènement</span></a>
       <a href="#"><span>À propos</span></a>
       <a href="#"><span>Contact</span></a>
       <a href="#"><span>Évènements passés</span></a>
@@ -56,17 +57,11 @@
         <div class="content">
           <span class="close"></span>
           <div class="modal-body">
-            <!-- TODO: à voir que faire onsubmit? -->
-            <!-- <form
-              name="reserve"
-              action="index.html"
-              method="get"
-              onsubmit="return validate();"
-            > -->
             <form
               name="reserve"
               action="index.html"
               method="get"
+              onsubmit="return validate(event);"
             >
               <div
                 class="formData form-first-name" data-error="Veuillez entrer 2 caractères ou plus pour le champ du nom.">
@@ -77,6 +72,7 @@
                   id="first"
                   name="first"
                   minlength="2"
+                  onInput="validInput(event)"
                 /><br>
               </div>
               <div
@@ -100,13 +96,14 @@
                 /><br>
               </div>
               <div
-                class="formData form-birthday" data-error="Vous devez entrer votre date de naissance.">
+                class="formData form-birthday" data-error="Vous devez avoir plus de 12 ans pour participer à cet évènement.">
                 <label>Date de naissance</label><br>
                 <input
                   class="text-control"
                   type="date"
                   id="birthday"
-                  name="birthday"
+                  name="birthday" 
+              
                 /><br>
               </div>
               <div

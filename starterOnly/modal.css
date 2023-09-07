@@ -211,6 +211,7 @@ label {
   font-size: 17px;
   font-weight: normal;
   display: inline-block;
+  margin-top: 11px;
   margin-bottom: 11px;
 }
 input {
@@ -426,8 +427,9 @@ input[data-error]::after {
 }
 /* custom select end */
 .text-label {
+  margin-top: 11px;
   font-weight: normal;
-  font-size: 16px;
+  font-size: 17px;
 }
 .hero-section {
   /* min-height: 93vh; */
@@ -671,6 +673,10 @@ footer {
     display: block;
     position: absolute;
     top: 88px
+  }
+
+  .content {
+    border-radius: 10px 10px 0 0;
   }
 } 
 

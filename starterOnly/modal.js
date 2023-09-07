@@ -8,6 +8,7 @@ function editNav() {
 }
 
 // DOM Elements
+  //Modal
 const modalbg = document.querySelector(".bground");
 const modalBody = document.querySelector('.modal-body');
 const modalThank = document.querySelector('.modal-thank');
@@ -15,11 +16,12 @@ const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const btnClose = document.querySelector('.close');
 const btnCloseThank = document.querySelector('.btn-close-thank');
+const bgContent = document.querySelector('.content');
+
+  //Form
 const form = document.querySelector('form');
 const inputsLocation = document.querySelectorAll('.checkbox-input-radio');
 const locations = document.querySelector('.locations');
-const bgContent = document.querySelector('.content');
-
 const inputFirstN = document.querySelector('#first');
 const inputLastN = document.querySelector('#last');
 const inputEmail = document.querySelector('#email');
@@ -43,7 +45,6 @@ function launchModal() {
   formData.forEach(form => form.dataset['errorVisible'] ='false');
   inputsCheckboxes.forEach(input => input.checked = false)
 
-
 }
 
 ///////Close modal
@@ -61,7 +62,7 @@ function launchModal() {
     if(e.key === 'Escape') closeModal();
   })
 
-//////display or close error message
+//////Display or close error message
   ///1. Display error message
   function displayErrorMessage (inputEl) {
     inputEl.closest('.formData').dataset.errorVisible = 'true';
@@ -111,17 +112,21 @@ function launchModal() {
   ///3. check valid birthday
   const cbValidBirthday = function(input) {
     const birthMs = new Date(input.value);
-    //       // TODO: vérifier avant 
-    const diffMs = Date.now() - birthMs;
-    const age = new Date(diffMs).getFullYear() - 1970;
+    if (birthMs > 0) {
+      const diffMs = Date.now() - birthMs;
+      const age = new Date(diffMs).getFullYear() - 1970;
 
-    if (age > 12) {
-      closeErrorMessage(input);
-      return true;
+      if (age > 12) {
+        closeErrorMessage(input);
+        return true;
+      } else {
+        displayErrorMessage(input);
+        return false;
+      }
     } else {
-      displayErrorMessage(input);
       return false;
     }
+   
   };
 
   inputBirthday.addEventListener('input', function () {
@@ -148,6 +153,7 @@ function launchModal() {
     } else if (input.value === '0') {
       closeErrorMessage(input)
       return true
+
       // valid input if 0 <= value <= 99
     } else {
       closeErrorMessage(input);
@@ -170,7 +176,6 @@ function launchModal() {
       } else {
         displayErrorMessage(input);
         isTrue = false;
-        return;
       }
     }
     return isTrue
@@ -178,10 +183,13 @@ function launchModal() {
 
   inputsLocation.forEach(input => {
     input.addEventListener('change', function() {
+      const formLocations =  document.querySelector('.formData-locations');
+      // console.log(input.checked);
       if (input.checked) {
-      closeErrorMessage(input);
+        // console.log(formLocations);
+      closeErrorMessage(formLocations);
       } else {
-      displayErrorMessage(input);
+      displayErrorMessage(formLocations);
       }
     })
   })
@@ -201,6 +209,12 @@ function launchModal() {
     });
 
 ////////Submit form
+
+function clearForm () {
+  inputFirstN.value = inputLastN.value = inputBirthday.value = inputEmail.value = inputQuantity.Value = '';
+  inputCondition.checked = false;
+}
+
 function validate (e) {
   e.preventDefault();
 
@@ -222,10 +236,6 @@ function validate (e) {
   } 
 }
 
-function clearForm () {
-  inputFirstN.value = inputLastN.value = inputBirthday.value = inputEmail.value = inputQuantity.Value = '';
-  inputCondition.checked = false;
-}
 
 
 

@@ -19,7 +19,7 @@ body {
   margin: auto;
   display: flex;
   flex-direction: column;
-  background-image: url("background.png");
+  /* background-image: url("background.png"); */
   font-family: var(--font-default);
   font-size: 18px;
   
@@ -36,6 +36,8 @@ img {
 }
 
 .topnav {
+  display: flex;
+  justify-content: space-between;
   overflow: hidden;
   /* margin: 3.5%; */
   margin: 3.5% 3.5% 5.5% 3.5%;
@@ -508,10 +510,8 @@ footer {
 /* ****************Responsive design****************** */
 
 /* For large desktop > 1440px */
-@media screen and (max-width: 1440px) and (min-width: 1439px) {
+  @media screen and (max-width: 1440px) and (min-width: 1439px) {
   .header-logo {
-   /* FIXME: version 320px, logo est décalé, ne se situe pas sur la meme ligne avec nav */
-    /* TODO: comment reculer le logo à gauche dynamiquement, ne pas utiliser margin-left avec une valeur fixe */
     margin-left: 80px;
   }
   }

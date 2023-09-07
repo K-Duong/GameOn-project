@@ -20,82 +20,14 @@ const inputsLocation = document.querySelectorAll('.checkbox-input-radio');
 const locations = document.querySelector('.locations');
 const bgContent = document.querySelector('.content');
 
-// const inputFirstN = document.querySelector('#first');
+const inputFirstN = document.querySelector('#first');
+const inputLastN = document.querySelector('#last');
 const inputEmail = document.querySelector('#email');
-// const inputBirthday = document.querySelector('#birthday');
-// const inputQuantity = document.querySelector('#quantity');
-// const inputsCheckboxes = document.querySelectorAll('.checkboxes');
-// const inputCondition = document.querySelector('#checkbox1');
-// inputFirstN.value = 'Duong';
+const inputBirthday = document.querySelector('#birthday');
+const inputQuantity = document.querySelector('#quantity');
+const inputCondition = document.querySelector('#checkbox1');
 
-
-
-
-////////Create inputs objects
-
-const datas = [
-  firstName = {
-    domElement : document.querySelector('#first'),
-    validCondition() {
-      return this.domElement.value.length > 2 ? true : false
-    } ,
-  },
-
-  lastName = {
-    domElement : document.querySelector('#last'),
-    validCondition() {
-      return this.domElement.value.length > 2 ? true : false
-    }
-  },
-
-  email = {
-    domElement : document.querySelector('#email'),
-    validCondition() {
-      const mailFormat = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
-      
-      return this.domElement.value.match(mailFormat) ? true : false
-    }
-  },
-  
-  birthday = {
-    domElement : document.querySelector('#birthday'),
-    validCondition()  {
-      const birthMs = new Date(this.domElement.value)
-      // TODO: vérifier avant 
-      const diffMs = Date.now() - birthMs;
-      const age = new Date(diffMs).getFullYear() - 1970;
-      console.log(age);
-      return age >= 12 ? true : false
-    }
-  },
-  
-  quantity = {
-    domElement : document.querySelector('#quantity'),
-    validCondition() {
-      return  Number(this.domElement.value) !== NaN && Number(this.domElement.value) && this.domElement.value >= 0 && this.domElement.value <= 99 ? true : false
-
-    }
-  },
-
-  checkbox1 = {
-    domElement : document.querySelector('#checkbox1'),
-    value: 1,
-    validCondition() {
-      return this.domElement.checked;
-    }
-  },
-
-  // checkbox2 = {
-  //   domElement : document.querySelector('#checkbox2'),
-  //   value: 1,
-  //   // validCondition() {
-  //   //   return ;
-  //   // }
-  // }
-  
-]
-
-//display none message thank you
+//hide message thank you
 modalThank.style.display = "none";
 
 // launch modal event
@@ -109,103 +41,191 @@ function launchModal() {
   modalBody.style.display = 'block';
   modalThank.style.display = 'none';
   formData.forEach(form => form.dataset['errorVisible'] ='false');
-  datas.forEach(data => { 
-    if (data.domElement.className === 'text-control') {
-      data.domElement.value = '';
-    }   
-  })
   inputsCheckboxes.forEach(input => input.checked = false)
 
 
 }
-// function displayForm () {
-//   modalBody.style.display = 'block';
-//  modalThank.style.display = 'none';
-// }
-
-
 
 ///////Close modal
-
-  //1. create callback function close modal form 
+  ///1. create callback function close modal form 
   function closeModal() {
     modalbg.style.display = "none";
   }
 
-  //2.add event close modal to btn Close 
+  ///2.add event close modal to btn Close 
   btnClose.addEventListener('click', closeModal);
   btnCloseThank.addEventListener('click', closeModal);
 
-  //3.close modal with escape on keyboard
+  ///3.close modal with escape on keyboard
   window.addEventListener('keydown', (e) => {
     if(e.key === 'Escape') closeModal();
   })
 
-
+//////display or close error message
+  ///1. Display error message
+  function displayErrorMessage (inputEl) {
+    inputEl.closest('.formData').dataset.errorVisible = 'true';
+  }
+  ///2. Close error message
+  function closeErrorMessage (inputEl) {
+    inputEl.closest('.formData').dataset.errorVisible = 'false';
+  }
 
 ////////Check valid value for each input
-///callback func to check all types of value
-
-function isTrue (target, condition) {
-  if (condition) {
-    target.dataset['errorVisible'] = 'false'
-  } else {
-    target.dataset['errorVisible'] = 'true';
-  }
-}
-
-function checkValidInput (e, condition) {
-  const target = e.target.closest('.formData');
-  isTrue(target, condition);
-}
-
-function getValue (input, objVal) {
-  const value = input.value;
-  return objVal.value = value;
-}
-
-////functions to display or close error message
-
-const displayErrorMessage = (inputEl) => {
-  inputEl.closest('.formData').dataset['errorVisible'] = 'true';
-}
-const closeErrorMessage = (inputEl) => {
-  inputEl.closest('.formData').dataset['errorVisible'] = 'false';
-}
-/// add event for each type of input
-
-const validInput = function (e) {
-  const target = e.target.closest('.formData');
-  console.log(e);
-
-} 
-
-datas.forEach(data => {
-  data.domElement.addEventListener('input', (e) => {
-    const condition = data.validCondition();
-    // console.log(typeof(condition));
-    checkValidInput(e, condition);
-    getValue(data.domElement, data);
-  })
-})
-
-////////Check valid value for submitted form 
-function validate(e) {
-  e.preventDefault();
-  const invalidForm =  datas.some(data => !data.value || !data.validCondition())
-
-  if(invalidForm) {
-    datas.forEach(data => {
-    if(!data.value || !data.validCondition()) { 
-      displayErrorMessage(data.domElement)
+  ///1. check valid first and last Name
+  const arrInputsName = [inputFirstN, inputLastN];
+  const cbValidName = function(inp) {
+    if(inp.value.length > 2) {
+      closeErrorMessage(inp);
+      return true;
     } else {
-      closeErrorMessage(data.domElement);
+      displayErrorMessage(inp);
+      return false;
     }
-    })
+  };
 
-  } else {
+  arrInputsName.forEach((input) => {
+    input.addEventListener('input', function() {
+      cbValidName(this);
+    })
+  });
+
+  ///2. check valid email
+  const cbValidEmail = function (inp) {
+    const mailFormat = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+
+    if(inp.value.match(mailFormat)) {
+      closeErrorMessage(inp);
+      return true;
+    } else {
+      displayErrorMessage(inp);
+      return false;
+    }
+  };
+
+  inputEmail.addEventListener('input', function() {
+    cbValidEmail(inputEmail);
+    }
+  );
+
+  ///3. check valid birthday
+  const cbValidBirthday = function(input) {
+    const birthMs = new Date(input.value);
+    //       // TODO: vérifier avant 
+    const diffMs = Date.now() - birthMs;
+    const age = new Date(diffMs).getFullYear() - 1970;
+
+    if (age > 12) {
+      closeErrorMessage(input);
+      return true;
+    } else {
+      displayErrorMessage(input);
+      return false;
+    }
+  };
+
+  inputBirthday.addEventListener('input', function () {
+    cbValidBirthday(inputBirthday);
+  });
+
+  ///4. check valid number of time participation
+  const cbValidQuantity = function(input) {
+
+    //for firefox: invalid if value = empty string or value < 0 or value > 99 of value is not a integer
+    
+      if (input.value === "" || input.value < 0 || input.value > 99) {
+      document.querySelector('.form-quantity').dataset.error = 'Veuillez entrer une valeur entre 0 et 99'
+      displayErrorMessage(input);
+      return false
+
+      //invalid input if la valeur n'est pas un numéro intégral 
+    } else if (!Number.isInteger(Number(input.value))) {
+      document.querySelector('.form-quantity').dataset.error = 'La valeur doit être un numéro entier positif '
+      displayErrorMessage(input);
+      return false
+
+      // valid input  if value = 0
+    } else if (input.value === '0') {
+      closeErrorMessage(input)
+      return true
+      // valid input if 0 <= value <= 99
+    } else {
+      closeErrorMessage(input);
+      return true
+    };
+  }
+
+  inputQuantity.addEventListener('input', function () {
+    cbValidQuantity(inputQuantity);
+  })
+  
+  ///5. check valid input radio locations
+  const cbValidLocations = function (arrInputs) {
+    let isTrue = true;
+    for (let input of arrInputs) {
+      if(input.checked) {
+        closeErrorMessage(input);
+        isTrue = true;
+        break
+      } else {
+        displayErrorMessage(input);
+        isTrue = false;
+        return;
+      }
+    }
+    return isTrue
+  }
+
+  inputsLocation.forEach(input => {
+    input.addEventListener('change', function() {
+      if (input.checked) {
+      closeErrorMessage(input);
+      } else {
+      displayErrorMessage(input);
+      }
+    })
+  })
+
+    ///6. check valid checkbox condition
+    const cbValidCondition = function (input){
+    if (input.checked) {
+      closeErrorMessage(input);
+      return true;
+    } else {
+      displayErrorMessage(input);
+      return false;
+    }
+    }
+    inputCondition.addEventListener('change', function () {
+      cbValidCondition(inputCondition);
+    });
+
+////////Submit form
+function validate (e) {
+  e.preventDefault();
+
+  const fieldValids = [
+    cbValidName(inputFirstN),
+    cbValidName(inputLastN),
+    cbValidEmail(inputEmail),
+    cbValidBirthday(inputBirthday),
+    cbValidQuantity(inputQuantity),
+    cbValidLocations(inputsLocation),
+    cbValidCondition(inputCondition)
+  ];
+  const formValid = fieldValids.every((valid) => valid);
+  
+  if (formValid) {
+    clearForm();
     modalBody.style.display = 'none';
     modalThank.style.display = 'block';
-  }
+  } 
 }
+
+function clearForm () {
+  inputFirstN.value = inputLastN.value = inputBirthday.value = inputEmail.value = inputQuantity.Value = '';
+  inputCondition.checked = false;
+}
+
+
 

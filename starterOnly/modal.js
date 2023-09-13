@@ -111,21 +111,29 @@ function launchModal() {
 
   ///3. check valid birthday
   const cbValidBirthday = function(input) {
-    const birthMs = new Date(input.value);
-    if (birthMs > 0) {
-      const diffMs = Date.now() - birthMs;
-      const age = new Date(diffMs).getFullYear() - 1970;
-
-      if (age > 12) {
-        closeErrorMessage(input);
-        return true;
-      } else {
-        displayErrorMessage(input);
-        return false;
-      }
-    } else {
+    // console.log(input.value);
+    if (input.value === '') {
+      console.log(input.value)
+      displayErrorMessage(input)
       return false;
+    } else {
+        const birthMs = new Date(input.value);
+        if (birthMs > 0) {
+          const diffMs = Date.now() - birthMs;
+          const age = new Date(diffMs).getFullYear() - 1970;
+
+          if (age > 12) {
+            closeErrorMessage(input);
+            return true;
+          } else {
+            displayErrorMessage(input);
+            return false;
+          }
+        } else {
+          return false;
+        }
     }
+    
    
   };
 

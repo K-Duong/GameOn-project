@@ -586,12 +586,22 @@ footer {
     z-index: 10;
     background: transparent
 }
+
+.icon-disabled {
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.6;
+}
   /* box shadow for nav list when it's opened */
   .nav-list-responsive {
+    border-radius: 5px;
     box-shadow: 0 2px 7px 2px rgba(0, 0, 0, 0.2);
     position: relative;
     top: 50px;
     background-color: white;
+    animation-name: openNavList;
+    animation-duration: 0.5s;
+    
   }
 }
 
@@ -701,3 +711,15 @@ footer {
   }
 }
 
+@keyframes openNavList {
+  from {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  50% {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}

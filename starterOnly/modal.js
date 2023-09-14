@@ -13,6 +13,7 @@ function editNav() {
 
 // DOM Elements
   //Modal
+const iconNav = document.querySelector('.icon');
 const modalbg = document.querySelector(".bground");
 const modalBody = document.querySelector('.modal-body');
 const modalThank = document.querySelector('.modal-thank');
@@ -48,9 +49,13 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
 // launch modal form
 function launchModal() {
-  const inputsCheckboxes = document.querySelectorAll('.checkboxes');
-  modalbg.style.display = "block";
+  
+  // disable link icon to open nav list
+  iconNav.classList.add('icon-disabled');
+  // fix body 
   body.classList.add('body-overflow-hidden');
+
+  modalbg.style.display = "block";
   modalBody.style.display = 'block';
   modalThank.style.display = 'none';
    // initialize form
@@ -66,6 +71,8 @@ function launchModal() {
   function closeModal() {
     modalbg.style.display = "none";
     body.classList.remove('body-overflow-hidden');
+    iconNav.classList.remove('icon-disabled');
+
   }
 
   ///2.add event close modal to btn Close 

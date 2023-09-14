@@ -76,7 +76,8 @@ function launchModal() {
   ///1. check valid first and last Name
   const arrInputsName = [inputFirstN, inputLastN];
   const cbValidName = function(inp) {
-    if(inp.value.length > 2) {
+    const inpTrim = inp.value.trim(); 
+    if(inpTrim.length > 2) {
       closeErrorMessage(inp);
       return true;
     } else {
@@ -93,7 +94,7 @@ function launchModal() {
 
   ///2. check valid email
   const cbValidEmail = function (inp) {
-    const mailFormat = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+    const mailFormat = /[a-z0-9-._]+@[a-z0-9-_]+.[a-z]{2,4}/;
 
     if(inp.value.match(mailFormat)) {
       closeErrorMessage(inp);
@@ -111,9 +112,8 @@ function launchModal() {
 
   ///3. check valid birthday
   const cbValidBirthday = function(input) {
-    // console.log(input.value);
     if (input.value === '') {
-      console.log(input.value)
+      // console.log(input.value)
       displayErrorMessage(input)
       return false;
     } else {
@@ -180,7 +180,7 @@ function launchModal() {
       if(input.checked) {
         closeErrorMessage(input);
         isTrue = true;
-        break
+        break;
       } else {
         displayErrorMessage(input);
         isTrue = false;
@@ -189,18 +189,17 @@ function launchModal() {
     return isTrue
   }
 
-  inputsLocation.forEach(input => {
-    input.addEventListener('change', function() {
-      const formLocations =  document.querySelector('.formData-locations');
-      // console.log(input.checked);
-      if (input.checked) {
-        // console.log(formLocations);
-      closeErrorMessage(formLocations);
-      } else {
-      displayErrorMessage(formLocations);
-      }
-    })
-  })
+  //TODO: revoir, pas besoin input.addEventListener
+  // inputsLocation.forEach(input => {
+  //   input.addEventListener('change', function() {
+  //     const formLocations =  document.querySelector('.formData-locations');
+  //     if (input.checked) {
+  //     closeErrorMessage(formLocations);
+  //     } else {
+  //     displayErrorMessage(formLocations);
+  //     }
+  //   })
+  // })
 
     ///6. check valid checkbox condition
     const cbValidCondition = function (input){
@@ -238,6 +237,7 @@ function validate (e) {
   const formValid = fieldValids.every((valid) => valid);
   
   if (formValid) {
+    //TODO: utiliser method clear() pour chaque input
     clearForm();
     modalBody.style.display = 'none';
     modalThank.style.display = 'block';

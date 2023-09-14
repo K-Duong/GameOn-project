@@ -1,9 +1,13 @@
 function editNav() {
-  var x = document.getElementById("myTopnav");
+  const x = document.getElementById("myTopnav");
+  const navList = document.querySelector('.nav-list');
+  // console.log(mainNav);
   if (x.className === "topnav") {
     x.className += " responsive";
+    navList.classList.add('nav-list-responsive');
   } else {
     x.className = "topnav";
+    navList.classList.remove('nav-list-responsive');
   }
 }
 
@@ -19,7 +23,7 @@ const btnCloseThank = document.querySelector('.btn-close-thank');
 const bgContent = document.querySelector('.content');
 
   //Form
-  const body = document.querySelector('body');
+const body = document.querySelector('body');
 const form = document.querySelector('form');
 const inputsLocation = document.querySelectorAll('.checkbox-input-radio');
 const locations = document.querySelector('.locations');
@@ -124,7 +128,6 @@ function launchModal() {
   ///3. check valid birthday
   const cbValidBirthday = function(input) {
     if (input.value === '') {
-      // console.log(input.value)
       displayErrorMessage(input)
       return false;
     } else {
@@ -200,7 +203,7 @@ function launchModal() {
     return isTrue
   }
 
-  //TODO: revoir, pas besoin input.addEventListener
+  //// ce code est pour faire disparaitre le message d'erreur dès qu'une location est choisie
   // inputsLocation.forEach(input => {
   //   input.addEventListener('change', function() {
   //     const formLocations =  document.querySelector('.formData-locations');
@@ -243,8 +246,6 @@ function validate (e) {
   const formValid = fieldValids.every((valid) => valid);
   
   if (formValid) {
-    //TODO: utiliser method clear() pour chaque input
-    // clearForm();
     form.reset();
     modalBody.style.display = 'none';
     modalThank.style.display = 'block';

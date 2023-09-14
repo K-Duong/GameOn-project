@@ -19,6 +19,7 @@ const btnCloseThank = document.querySelector('.btn-close-thank');
 const bgContent = document.querySelector('.content');
 
   //Form
+  const body = document.querySelector('body');
 const form = document.querySelector('form');
 const inputsLocation = document.querySelectorAll('.checkbox-input-radio');
 const locations = document.querySelector('.locations');
@@ -29,8 +30,14 @@ const inputBirthday = document.querySelector('#birthday');
 const inputQuantity = document.querySelector('#quantity');
 const inputCondition = document.querySelector('#checkbox1');
 
-//hide message thank you
-modalThank.style.display = "none";
+
+function init() {
+  modalThank.style.display = "none";
+modalbg.style.display = "none"
+}
+
+//hide modal background
+init();
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -39,11 +46,14 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 function launchModal() {
   const inputsCheckboxes = document.querySelectorAll('.checkboxes');
   modalbg.style.display = "block";
-  // initialize form
+  body.classList.add('body-overflow-hidden');
   modalBody.style.display = 'block';
   modalThank.style.display = 'none';
+   // initialize form
+  form.reset();
   formData.forEach(form => form.dataset['errorVisible'] ='false');
-  inputsCheckboxes.forEach(input => input.checked = false)
+
+  window.scrollTo({ top: 0, behavior: 'auto' });
 
 }
 
@@ -51,6 +61,7 @@ function launchModal() {
   ///1. create callback function close modal form 
   function closeModal() {
     modalbg.style.display = "none";
+    body.classList.remove('body-overflow-hidden');
   }
 
   ///2.add event close modal to btn Close 
@@ -217,11 +228,6 @@ function launchModal() {
 
 ////////Submit form
 
-function clearForm () {
-  inputFirstN.value = inputLastN.value = inputBirthday.value = inputEmail.value = inputQuantity.Value = '';
-  inputCondition.checked = false;
-}
-
 function validate (e) {
   e.preventDefault();
 
@@ -238,7 +244,8 @@ function validate (e) {
   
   if (formValid) {
     //TODO: utiliser method clear() pour chaque input
-    clearForm();
+    // clearForm();
+    form.reset();
     modalBody.style.display = 'none';
     modalThank.style.display = 'block';
   } 

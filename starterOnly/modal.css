@@ -59,7 +59,8 @@ img {
   margin: 5px;
   text-decoration: none;
   font-size: 20px;
-  font-family: Roboto, sans-serif;
+  font-family: var(--font-default);
+  font-weight: 500;
 }
 
 .topnav a:hover {
@@ -69,6 +70,9 @@ img {
   text-decoration: underline;
   text-underline-offset: 5px;
 
+}
+.topnav .icon:hover {
+  background-color: transparent;
 }
 
 .topnav .icon {
@@ -580,14 +584,13 @@ footer {
     position: fixed;
     right: 20px;
     z-index: 10;
-    background: white;
-    /* box-shadow: 0 2px 7px 2px rgba(0, 0, 0, 0.2); */
+    background: transparent
 }
   /* box shadow for nav list when it's opened */
   .nav-list-responsive {
     box-shadow: 0 2px 7px 2px rgba(0, 0, 0, 0.2);
     position: relative;
-    top: 25px;
+    top: 50px;
     background-color: white;
   }
 }
@@ -647,6 +650,12 @@ footer {
     
   }
  
+  .nav-list-responsive {
+    /* box-shadow: 0 2px 7px 2px rgba(0, 0, 0, 0.2);
+    position: relative; */
+    top: 25px;
+    /* background-color: white; */
+  }
   .hero-headline {
     font-size: 40px;
   }

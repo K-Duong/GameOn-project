@@ -35,10 +35,16 @@ const inputBirthday = document.querySelector('#birthday');
 const inputQuantity = document.querySelector('#quantity');
 const inputCondition = document.querySelector('#checkbox1');
 
+function openModalThank(){
+  modalbg.style.display = "block"
+  modalBody.style.display = "none"
+  modalThank.style.display = "block";
+}
+
 
 function init() {
   modalThank.style.display = "none";
-modalbg.style.display = "none"
+  modalbg.style.display = "none"
 }
 
 //hide modal background
@@ -87,6 +93,7 @@ function launchModal() {
 //////Display or close error message
   ///1. Display error message
   function displayErrorMessage (inputEl) {
+    // console.log(inputEl.closest('.formData'));
     inputEl.closest('.formData').dataset.errorVisible = 'true';
   }
   ///2. Close error message
@@ -96,7 +103,7 @@ function launchModal() {
 
 ////////Check valid value for each input
   ///1. check valid first and last Name
-  const arrInputsName = [inputFirstN, inputLastN];
+ 
   const cbValidName = function(inp) {
     const inpTrim = inp.value.trim(); 
     if(inpTrim.length > 2) {
@@ -108,6 +115,7 @@ function launchModal() {
     }
   };
 
+  const arrInputsName = [inputFirstN, inputLastN];
   arrInputsName.forEach((input) => {
     input.addEventListener('input', function() {
       cbValidName(this);
@@ -154,9 +162,7 @@ function launchModal() {
           return false;
         }
     }
-    
-   
-  };
+   };
 
   inputBirthday.addEventListener('input', function () {
     cbValidBirthday(inputBirthday);
@@ -164,9 +170,7 @@ function launchModal() {
 
   ///4. check valid number of time participation
   const cbValidQuantity = function(input) {
-
     //for firefox: invalid if value = empty string or value < 0 or value > 99 of value is not a integer
-    
       if (input.value === "" || input.value < 0 || input.value > 99) {
       document.querySelector('.form-quantity').dataset.error = 'Veuillez entrer une valeur entre 0 et 99'
       displayErrorMessage(input);
@@ -192,23 +196,22 @@ function launchModal() {
 
   inputQuantity.addEventListener('input', function () {
     cbValidQuantity(inputQuantity);
-  })
+  });
   
   ///5. check valid input radio locations
-  const cbValidLocations = function (arrInputs) {
-    let isTrue = true;
-    for (let input of arrInputs) {
-      if(input.checked) {
-        closeErrorMessage(input);
-        isTrue = true;
-        break;
-      } else {
-        displayErrorMessage(input);
-        isTrue = false;
+  const cbValidLocations = function () {
+    for (const inp of inputsLocation) {
+      if (inp.checked) {
+        closeErrorMessage(inp); 
+        return true;
       }
     }
-    return isTrue
+    displayErrorMessage(document.querySelector('.formData-locations'));
+    return false; 
   }
+  cbValidLocations();
+
+  // inputsLocation.forEach((inp) => cbValidLocations(inp));
 
   //// ce code est pour faire disparaitre le message d'erreur dès qu'une location est choisie
   // inputsLocation.forEach(input => {
@@ -247,15 +250,15 @@ function validate (e) {
     cbValidEmail(inputEmail),
     cbValidBirthday(inputBirthday),
     cbValidQuantity(inputQuantity),
-    cbValidLocations(inputsLocation),
+    cbValidLocations(),
     cbValidCondition(inputCondition)
   ];
   const formValid = fieldValids.every((valid) => valid);
   
   if (formValid) {
     form.reset();
-    modalBody.style.display = 'none';
-    modalThank.style.display = 'block';
+    closeModal();
+    openModalThank();
   } 
 }
 

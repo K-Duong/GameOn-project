@@ -14,22 +14,22 @@
   <body>
     <div class="topnav" id="myTopnav">
       <div class="header-logo">
-      <img alt="logo" src="Logo.png" width="auto" height="auto" />
-    </div>
-    <div class="main-navbar">
-      <!-- <a href="#" class="active"><span>Accueil</span></a> -->
-      <div class="nav-list">
-      <a href="#"><span>Détails de l'évènement</span></a>
-      <a href="#"><span>À propos</span></a>
-      <a href="#"><span>Contact</span></a>
-      <a href="#"><span>Évènements passés</span></a>
-    </div>
-      <a href="javascript:void(0);" class="icon" onclick="editNav()">
+        <img alt="logo" src="Logo.png" />
+      </div>
+      <div class="main-navbar">
+        <!-- <a href="#" class="active"><span>Accueil</span></a> -->
+        <div class="nav-list">
+          <a href="#"><span>Détails de l'évènement</span></a>
+          <a href="#"><span>À propos</span></a>
+          <a href="#"><span>Contact</span></a>
+          <a href="#"><span>Évènements passés</span></a>
+        </div>
+        <a href="javascript:void(0);" class="icon" onclick="editNav()">
         <i class="fa fa-bars fa-nav"></i>
-      </a>
+        </a>
+      </div>
     </div>
-    </div>
-  </div>
+  
     <main>
       <div class="hero-section">
         <div class="hero-content">
@@ -108,7 +108,7 @@
               <div
                 class="formData form-quantity" data-error="Veuillez entrer un numéro entre 0 à 99">
                 <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
-                <input type="number" pattern="[0-9]" inputmode="numeric" class="text-control" id="quantity" name="quantity" min="0" max="99"  >
+                <input type="number" inputmode="numeric" class="text-control" id="quantity" name="quantity" min="0" max="99"  >
               </div>
 
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
@@ -192,7 +192,7 @@
                   id="checkbox1"
                   
                 />
-                <label class="checkbox2-label" for="checkbox1" required>
+                <label class="checkbox2-label" for="checkbox1">
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
@@ -205,9 +205,8 @@
                 <br>
               </div>
               <input
-                class="btn-submit"
+                class="btn-submit button"
                 type="submit"
-                class="button"
                 value="C'est parti"
               />
             </form>

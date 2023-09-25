@@ -106,7 +106,7 @@ function launchModal() {
  
   const cbValidName = function(inp) {
     const inpTrim = inp.value.trim(); 
-    if(inpTrim.length > 2) {
+    if(inpTrim.length >= 2) {
       closeErrorMessage(inp);
       return true;
     } else {
@@ -151,7 +151,7 @@ function launchModal() {
           const diffMs = Date.now() - birthMs;
           const age = new Date(diffMs).getFullYear() - 1970;
 
-          if (age > 12) {
+          if (age >= 12) {
             closeErrorMessage(input);
             return true;
           } else {
@@ -176,7 +176,7 @@ function launchModal() {
       displayErrorMessage(input);
       return false
 
-      //invalid input if la valeur n'est pas un numéro intégral 
+      //invalid input if value is not integer number
     } else if (!Number.isInteger(Number(input.value))) {
       document.querySelector('.form-quantity').dataset.error = 'La valeur doit être un numéro entier positif '
       displayErrorMessage(input);
@@ -226,7 +226,7 @@ function launchModal() {
   // })
 
     ///6. check valid checkbox condition
-    const cbValidCondition = function (input){
+  const cbValidCondition = function (input){
     if (input.checked) {
       closeErrorMessage(input);
       return true;
@@ -234,7 +234,8 @@ function launchModal() {
       displayErrorMessage(input);
       return false;
     }
-    }
+  }
+
     inputCondition.addEventListener('change', function () {
       cbValidCondition(inputCondition);
     });
